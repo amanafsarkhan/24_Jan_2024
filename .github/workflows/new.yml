@@ -1,0 +1,18 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run a sample script
+      run: echo "Hello, World!"
+
+    - name: Step with email 24f1002109@ds.study.iitm.ac.in
+      run: echo "This step has your email address in its name"
