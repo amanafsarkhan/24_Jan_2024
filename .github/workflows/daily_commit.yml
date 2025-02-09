@@ -21,4 +21,4 @@ jobs:
           git config --global user.email "24f1002109@ds.study.iitm.ac.in"
           git add last_run.txt
           git commit -m "Daily commit: $(date -u)"
-          git push
+          git push https://x-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:${{ secrets.GH_PAT }}@github.com/amanafsarkhan/24_Jan_2024.git main
