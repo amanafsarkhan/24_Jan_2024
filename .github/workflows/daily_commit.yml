@@ -12,24 +12,24 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: false  # Ensures we re-authenticate properly
+          persist-credentials: false  # Ensures we manually authenticate
 
       - name: Update Timestamp (24f1002109@ds.study.iitm.ac.in)
         run: echo "$(date)" > last_run.txt
 
       - name: Commit and Push Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.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 }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "24f1002109@ds.study.iitm.ac.in"
           git add last_run.txt
           
-          # Check if there are actual changes before committing
+          # Check if changes exist
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
           
           git commit -m "Daily commit: $(date -u)"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/amanafsarkhan/24_Jan_2024.git main
